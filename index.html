@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase | Online Shopping</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">ShopEase</a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+      </div>
+
+      <div class="nav-icons">
+        <a href="products.html" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+
+        <a href="cart.html" class="cart-icon" aria-label="Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- Hero Section -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-tag">NEW COLLECTION 2026</p>
+        <h1>Discover Your Style</h1>
+        <p>
+          Explore trending fashion, accessories, and everyday essentials
+          selected just for you.
+        </p>
+
+        <a href="products.html" class="btn">Shop Now</a>
+      </div>
+
+      <div class="hero-image">
+        <div class="hero-placeholder">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Fashion Collection</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+      <div class="feature">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div>
+          <h3>Free Shipping</h3>
+          <p>On orders over ₹999</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <i class="fa-solid fa-rotate-left"></i>
+        <div>
+          <h3>Easy Returns</h3>
+          <p>Simple 7-day returns</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <i class="fa-solid fa-lock"></i>
+        <div>
+          <h3>Secure Payment</h3>
+          <p>100% secure checkout</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <i class="fa-solid fa-headset"></i>
+        <div>
+          <h3>24/7 Support</h3>
+          <p>We're here to help</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Categories -->
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="subtitle">EXPLORE</p>
+          <h2>Top Categories</h2>
+        </div>
+
+        <a href="products.html">View All <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="categories">
+        <a href="products.html?category=Men" class="category-card">
+          <i class="fa-solid fa-shirt"></i>
+          <h3>Men</h3>
+        </a>
+
+        <a href="products.html?category=Women" class="category-card">
+          <i class="fa-solid fa-person-dress"></i>
+          <h3>Women</h3>
+        </a>
+
+        <a href="products.html?category=Footwear" class="category-card">
+          <i class="fa-solid fa-shoe-prints"></i>
+          <h3>Footwear</h3>
+        </a>
+
+        <a href="products.html?category=Bags" class="category-card">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <h3>Bags</h3>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- Best Sellers -->
+    <section class="section best-sellers">
+      <div class="section-heading">
+        <div>
+          <p class="subtitle">POPULAR NOW</p>
+          <h2>Best Sellers</h2>
+        </div>
+
+        <a href="products.html">View All <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="product-grid" id="featured-products">
+        <!-- Products will be added using JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <h2>ShopEase</h2>
+      <p>Your simple destination for everyday shopping.</p>
+    </div>
+
+    <p>© 2026 ShopEase. All rights reserved.</p>
+  </footer>
+
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
