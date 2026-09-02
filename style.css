@@ -490,3 +490,271 @@ footer p {
     width: auto;
   }
 }
+
+/* Product Details Page */
+.product-details-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 25px;
+  min-height: 70vh;
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.details-image {
+  height: 450px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details-image i {
+  font-size: 150px;
+  color: #555;
+}
+
+.details-info h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.details-rating {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.details-rating i {
+  color: #f4b400;
+}
+
+.details-info h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.product-description {
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.quantity-section {
+  margin-bottom: 25px;
+}
+
+.quantity-section > p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.quantity-control button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.quantity-control span {
+  width: 45px;
+  text-align: center;
+}
+
+.add-cart-btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+.continue-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .product-details {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .details-image {
+    height: 300px;
+  }
+
+  .details-image i {
+    font-size: 100px;
+  }
+
+  .details-info h1 {
+    font-size: 28px;
+  }
+}
+
+/* Cart Page */
+.cart-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 25px;
+  min-height: 70vh;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
+  align-items: start;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  background: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 35px;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h3 {
+  margin-bottom: 8px;
+}
+
+.cart-item-info p {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 15px;
+}
+
+.remove-btn {
+  border: none;
+  background: transparent;
+  color: #c0392b;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Cart Summary */
+.cart-summary {
+  border: 1px solid #eee;
+  padding: 25px;
+  border-radius: 8px;
+  position: sticky;
+  top: 90px;
+}
+
+.cart-summary h2 {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-row.total {
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: none;
+  margin-top: 10px;
+}
+
+.checkout-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.empty-cart i {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.empty-cart h2 {
+  margin-bottom: 10px;
+}
+
+.empty-cart p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    flex-wrap: wrap;
+  }
+
+  .cart-item-actions {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-summary {
+    position: static;
+  }
+}
