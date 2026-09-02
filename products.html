@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | ShopEase</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">ShopEase</a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+      </div>
+
+      <div class="nav-icons">
+        <a href="cart.html" class="cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="products-page">
+
+    <div class="page-title">
+      <p class="subtitle">SHOP</p>
+      <h1>Explore Products</h1>
+      <p>Find products that match your style.</p>
+    </div>
+
+    <!-- Search and Sort -->
+    <div class="product-toolbar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search products..."
+        >
+      </div>
+
+      <select id="sort-select">
+        <option value="default">Sort by</option>
+        <option value="low-high">Price: Low to High</option>
+        <option value="high-low">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+    </div>
+
+    <div class="products-layout">
+
+      <!-- Filters -->
+      <aside class="filters">
+        <h3>Categories</h3>
+
+        <button class="filter-btn active" data-category="All">
+          All Products
+        </button>
+
+        <button class="filter-btn" data-category="Men">Men</button>
+        <button class="filter-btn" data-category="Women">Women</button>
+        <button class="filter-btn" data-category="Footwear">
+          Footwear
+        </button>
+        <button class="filter-btn" data-category="Bags">Bags</button>
+      </aside>
+
+      <!-- Product List -->
+      <section class="products-content">
+        <p id="results-count"></p>
+
+        <div class="product-grid" id="all-products">
+          <!-- JavaScript will add products -->
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div>
+      <h2>ShopEase</h2>
+      <p>Your simple destination for everyday shopping.</p>
+    </div>
+
+    <p>© 2026 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
