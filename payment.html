@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Payment | ShopEase</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">ShopEase</a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+      </div>
+
+      <div class="nav-icons">
+        <a href="cart.html" class="cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+
+  <main class="payment-page">
+
+    <div class="page-title">
+      <p class="subtitle">PAYMENT</p>
+      <h1>Choose Payment Method</h1>
+      <p>Complete your order securely.</p>
+    </div>
+
+
+    <div class="payment-container">
+
+      <div class="payment-methods">
+
+        <label class="payment-option">
+          <input
+            type="radio"
+            name="payment"
+            value="UPI"
+            checked
+          >
+
+          <div>
+            <i class="fa-solid fa-mobile-screen"></i>
+            <span>UPI</span>
+          </div>
+        </label>
+
+
+        <label class="payment-option">
+          <input
+            type="radio"
+            name="payment"
+            value="Card"
+          >
+
+          <div>
+            <i class="fa-solid fa-credit-card"></i>
+            <span>Credit / Debit Card</span>
+          </div>
+        </label>
+
+
+        <label class="payment-option">
+          <input
+            type="radio"
+            name="payment"
+            value="Cash on Delivery"
+          >
+
+          <div>
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span>Cash on Delivery</span>
+          </div>
+        </label>
+
+      </div>
+
+
+      <div class="payment-summary">
+
+        <h2>Order Total</h2>
+
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span id="payment-total">₹0</span>
+        </div>
+
+        <button class="btn" id="confirm-payment">
+          Confirm Payment
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    <div>
+      <h2>ShopEase</h2>
+      <p>Your simple destination for everyday shopping.</p>
+    </div>
+
+    <p>© 2026 ShopEase. All rights reserved.</p>
+  </footer>
+
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

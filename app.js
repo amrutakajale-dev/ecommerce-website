@@ -374,3 +374,145 @@ function removeFromCart(productId) {
   updateCartCount();
   renderCart();
 }
+
+// Checkout Page Functionality
+const checkoutItemsContainer = document.getElementById("checkout-items");
+const checkoutTotalElement = document.getElementById("checkout-total");
+const checkoutForm = document.getElementById("checkout-form");
+
+function renderCheckout() {
+  if (!checkoutItemsContainer) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // If cart is empty
+  if (cart.length === 0) {
+    checkoutItemsContainer.innerHTML =
+      "<p>Your cart is empty.</p>";
+
+    if (checkoutTotalElement) {
+      checkoutTotalElement.textContent = "₹0";
+    }
+    return;
+  }
+
+  // Display order items
+  checkoutItemsContainer.innerHTML = cart
+    .map(
+      (item) => `
+        <div class="checkout-item">
+          <div>
+            <h4>${item.name}</h4>
+            <p>Quantity: ${item.quantity}</p>
+          </div>
+
+          <strong>₹${item.price * item.quantity}</strong>
+        </div>
+      `
+    )
+    .join("");
+
+  // Calculate total
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  checkoutTotalElement.textContent = `₹${total}`;
+}
+
+
+// Show order details
+if (checkoutItemsContainer) {
+  renderCheckout();
+}
+
+
+// Save shipping details and go to payment
+if (checkoutForm) {
+  checkoutForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const shippingDetails = {
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("address").value,
+      city: document.getElementById("city").value,
+      pincode: document.getElementById("pincode").value
+    };
+
+    localStorage.setItem(
+      "shippingDetails",
+      JSON.stringify(shippingDetails)
+    );
+
+    window.location.href = "payment.html";
+  });
+}
+
+// Payment Page Functionality
+const paymentTotalElement = document.getElementById("payment-total");
+const confirmPaymentButton = document.getElementById("confirm-payment");
+
+if (paymentTotalElement) {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Calculate total amount
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  paymentTotalElement.textContent = `₹${total}`;
+}
+
+
+// Confirm payment
+if (confirmPaymentButton) {
+  confirmPaymentButton.addEventListener("click", () => {
+    const selectedPayment = document.querySelector(
+      'input[name="payment"]:checked'
+    );
+
+    // Save selected payment method
+    localStorage.setItem(
+      "paymentMethod",
+      selectedPayment.value
+    );
+
+    // Redirect to success page
+    window.location.href = "success.html";
+  });
+}
+
+// Success Page Functionality
+const successPaymentElement =
+  document.getElementById("success-payment");
+
+const successTotalElement =
+  document.getElementById("success-total");
+
+if (successPaymentElement && successTotalElement) {
+  // Get cart data before clearing it
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Calculate final total
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  // Get selected payment method
+  const paymentMethod =
+    localStorage.getItem("paymentMethod") || "Not selected";
+
+  // Display details
+  successPaymentElement.textContent = paymentMethod;
+  successTotalElement.textContent = `₹${total}`;
+
+  // Clear cart after order is successful
+  localStorage.removeItem("cart");
+
+  // Update cart count to 0
+  updateCartCount();
+}
