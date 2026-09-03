@@ -9,8 +9,8 @@ if (featuredContainer) {
       (product) => `
         <a href="product.html?id=${product.id}" class="product-card">
           <div class="product-image">
-            <i class="fa-solid ${product.icon}"></i>
-          </div>
+           <img src="${product.image}" alt="${product.name}">
+        </div>
 
           <div class="product-info">
             <h3>${product.name}</h3>
@@ -44,6 +44,20 @@ function updateCartCount() {
 
 updateCartCount();
 
+// Toast Notification
+function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
 // Products Page Functionality
 const productsContainer = document.getElementById("all-products");
 const searchInput = document.getElementById("search-input");
@@ -70,8 +84,8 @@ function displayProducts(productList) {
       (product) => `
         <a href="product.html?id=${product.id}" class="product-card">
           <div class="product-image">
-            <i class="fa-solid ${product.icon}"></i>
-          </div>
+            <img src="${product.image}" alt="${product.name}">
+        </div>
 
           <div class="product-info">
             <h3>${product.name}</h3>
@@ -168,7 +182,7 @@ if (productDetailsContainer) {
       <div class="product-details">
 
         <div class="details-image">
-          <i class="fa-solid ${selectedProduct.icon}"></i>
+          <img src="${selectedProduct.image}" alt="${selectedProduct.name}">
         </div>
 
         <div class="details-info">
@@ -256,7 +270,7 @@ if (productDetailsContainer) {
 
         updateCartCount();
 
-        alert(`${selectedProduct.name} added to cart!`);
+        showToast(`${selectedProduct.name} added to cart!`);
       });
   } else {
     productDetailsContainer.innerHTML =
@@ -295,10 +309,9 @@ function renderCart() {
   cartItemsContainer.innerHTML = cart
     .map(
       (item) => `
-        <div class="cart-item">
-          <div class="cart-item-image">
-            <i class="fa-solid ${item.icon}"></i>
-          </div>
+        <div class="cart-item-image">
+        <img src="${item.image}" alt="${item.name}">
+        </div>
 
           <div class="cart-item-info">
             <h3>${item.name}</h3>
@@ -427,18 +440,35 @@ if (checkoutItemsContainer) {
   renderCheckout();
 }
 
-
-// Save shipping details and go to payment
+// Validate shipping details and go to payment
 if (checkoutForm) {
   checkoutForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const pincode = document.getElementById("pincode").value.trim();
+
+    // Phone validation
+    if (!/^\d{10}$/.test(phone)) {
+      showToast("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    // PIN code validation
+    if (!/^\d{6}$/.test(pincode)) {
+      showToast("Please enter a valid 6-digit PIN code.");
+      return;
+    }
+
     const shippingDetails = {
-      name: document.getElementById("name").value,
-      phone: document.getElementById("phone").value,
-      address: document.getElementById("address").value,
-      city: document.getElementById("city").value,
-      pincode: document.getElementById("pincode").value
+      name,
+      phone,
+      address,
+      city,
+      pincode
     };
 
     localStorage.setItem(
@@ -449,6 +479,7 @@ if (checkoutForm) {
     window.location.href = "payment.html";
   });
 }
+
 
 // Payment Page Functionality
 const paymentTotalElement = document.getElementById("payment-total");
@@ -492,11 +523,26 @@ const successPaymentElement =
 const successTotalElement =
   document.getElementById("success-total");
 
-if (successPaymentElement && successTotalElement) {
-  // Get cart data before clearing it
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const successOrderIdElement =
+  document.getElementById("success-order-id");
 
-  // Calculate final total
+const successDeliveryElement =
+  document.getElementById("success-delivery");
+
+
+if (
+  successPaymentElement &&
+  successTotalElement &&
+  successOrderIdElement &&
+  successDeliveryElement
+) {
+  // Get cart data
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  // Clear cart after successful order
+  localStorage.removeItem("cart");
+  
+   // Calculate final total
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -506,13 +552,177 @@ if (successPaymentElement && successTotalElement) {
   const paymentMethod =
     localStorage.getItem("paymentMethod") || "Not selected";
 
-  // Display details
+  // Get shipping details
+  const shippingDetails =
+    JSON.parse(localStorage.getItem("shippingDetails")) || {};
+
+  // Generate Order ID
+  const orderId =
+    "SE-" + Math.floor(100000 + Math.random() * 900000);
+
+  // Display order details
+  successOrderIdElement.textContent = orderId;
   successPaymentElement.textContent = paymentMethod;
   successTotalElement.textContent = `₹${total}`;
 
-  // Clear cart after order is successful
+  successDeliveryElement.textContent =
+    shippingDetails.city && shippingDetails.pincode
+      ? `${shippingDetails.city} - ${shippingDetails.pincode}`
+      : "Not available";
+ 
+    // Save order to order history
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    const newOrder = {
+    id: orderId,
+    items: cart,
+    total: total,
+    paymentMethod: paymentMethod,
+    shippingDetails: shippingDetails,
+    date: new Date().toLocaleString()
+ };
+
+orders.push(newOrder);
+
+localStorage.setItem("orders", JSON.stringify(orders));
+  // Clear cart after successful order
   localStorage.removeItem("cart");
 
-  // Update cart count to 0
+  // Update cart count
   updateCartCount();
+}
+
+// Clear Cart Functionality
+const clearCartButton = document.getElementById("clear-cart");
+
+if (clearCartButton) {
+  clearCartButton.addEventListener("click", () => {
+    localStorage.removeItem("cart");
+
+    updateCartCount();
+    renderCart();
+  });
+}
+
+// Prevent checkout when cart is empty
+const checkoutButton = document.getElementById("checkout-btn");
+
+if (checkoutButton) {
+  checkoutButton.addEventListener("click", () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+      showToast("Your cart is empty. Please add products before checkout.");
+    } else {
+      window.location.href = "checkout.html";
+    }
+  });
+}
+
+// Order History Page
+const ordersContainer = document.getElementById("orders-container");
+
+if (ordersContainer) {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  if (orders.length === 0) {
+    ordersContainer.innerHTML = `
+      <div class="empty-orders">
+        <h2>No orders yet</h2>
+        <p>You haven't placed any orders yet.</p>
+        <a href="products.html" class="btn">Start Shopping</a>
+      </div>
+    `;
+  } else {
+    ordersContainer.innerHTML = orders
+      .slice()
+      .reverse()
+      .map((order) => {
+        const itemNames = order.items
+          .map((item) => `${item.name} × ${item.quantity}`)
+          .join(", ");
+
+        return `
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <h3>${order.id}</h3>
+                <p>${order.date}</p>
+              </div>
+
+              <strong>₹${order.total}</strong>
+            </div>
+
+            <div class="order-info">
+              <p><strong>Items:</strong> ${itemNames}</p>
+              <p><strong>Payment:</strong> ${order.paymentMethod}</p>
+              <p><strong>Delivery:</strong> ${order.shippingDetails.city || "N/A"} - ${order.shippingDetails.pincode || "N/A"}</p>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+  }
+}
+
+// =========================
+// Admin Dashboard
+// =========================
+
+const totalProductsElement = document.getElementById("total-products");
+const totalOrdersElement = document.getElementById("total-orders");
+const totalRevenueElement = document.getElementById("total-revenue");
+const adminOrdersContainer = document.getElementById("admin-orders-container");
+
+if (
+  totalProductsElement &&
+  totalOrdersElement &&
+  totalRevenueElement &&
+  adminOrdersContainer
+) {
+  // Get orders from localStorage
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  // Total Products
+  totalProductsElement.textContent = products.length;
+
+  // Total Orders
+  totalOrdersElement.textContent = orders.length;
+
+  // Total Revenue
+  const totalRevenue = orders.reduce(
+    (total, order) => total + Number(order.total || 0),
+    0
+  );
+
+  totalRevenueElement.textContent = `₹${totalRevenue}`;
+
+  // Recent Orders
+  if (orders.length === 0) {
+    adminOrdersContainer.innerHTML = `
+      <div class="no-admin-orders">
+        <p>No orders available yet.</p>
+      </div>
+    `;
+  } else {
+    // Show latest 5 orders
+    const recentOrders = orders.slice(-5).reverse();
+
+    adminOrdersContainer.innerHTML = recentOrders
+      .map(
+        (order, index) => `
+          <div class="admin-order-item">
+            <div>
+              <h3>Order #${orders.length - index}</h3>
+              <p>${order.date || "Recent Order"}</p>
+            </div>
+
+            <div class="admin-order-total">
+              ₹${order.total || 0}
+            </div>
+          </div>
+        `
+      )
+      .join("");
+  }
 }

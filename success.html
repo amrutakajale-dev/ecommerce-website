@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +15,17 @@
 
 <body>
 
+  <!-- Navbar -->
   <header>
     <nav class="navbar">
+
       <a href="index.html" class="logo">ShopEase</a>
 
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="products.html">Shop</a>
-      </div>
+       <a href="index.html">Home</a>
+       <a href="products.html">Shop</a>
+       <a href="orders.html">My Orders</a>
+</div>
 
       <div class="nav-icons">
         <a href="cart.html" class="cart-icon">
@@ -29,9 +33,12 @@
           <span id="cart-count">0</span>
         </a>
       </div>
+
     </nav>
   </header>
 
+
+  <!-- Success Section -->
   <main class="success-page">
 
     <div class="success-card">
@@ -48,7 +55,15 @@
         Your order has been placed successfully.
       </p>
 
+
+      <!-- Order Details -->
       <div class="success-details">
+
+        <div>
+          <span>Order ID</span>
+          <strong id="success-order-id">Loading...</strong>
+        </div>
+
         <div>
           <span>Payment Method</span>
           <strong id="success-payment">Loading...</strong>
@@ -58,7 +73,14 @@
           <span>Total Amount</span>
           <strong id="success-total">₹0</strong>
         </div>
+
+        <div>
+          <span>Delivery To</span>
+          <strong id="success-delivery">Loading...</strong>
+        </div>
+
       </div>
+
 
       <a href="products.html" class="btn">
         Continue Shopping
@@ -68,17 +90,28 @@
 
   </main>
 
+
+  <!-- Footer -->
   <footer>
+
     <div>
       <h2>ShopEase</h2>
       <p>Your simple destination for everyday shopping.</p>
     </div>
 
     <p>© 2026 ShopEase. All rights reserved.</p>
+
   </footer>
 
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+
+  <!-- JavaScript -->
   <script src="products.js"></script>
   <script src="app.js"></script>
 
 </body>
+
 </html>

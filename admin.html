@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dashboard | ShopEase</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">ShopEase Admin</a>
+
+      <div class="nav-links">
+        <a href="index.html">View Store</a>
+        <a href="orders.html">Orders</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="admin-page">
+
+    <div class="page-title">
+      <p class="subtitle">ADMIN DASHBOARD</p>
+      <h1>Store Overview</h1>
+      <p>Monitor products, orders, and store performance.</p>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="admin-stats">
+
+      <div class="admin-card">
+        <div class="admin-icon">
+          <i class="fa-solid fa-box"></i>
+        </div>
+
+        <div>
+          <p>Total Products</p>
+          <h2 id="total-products">0</h2>
+        </div>
+      </div>
+
+
+      <div class="admin-card">
+        <div class="admin-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+
+        <div>
+          <p>Total Orders</p>
+          <h2 id="total-orders">0</h2>
+        </div>
+      </div>
+
+
+      <div class="admin-card">
+        <div class="admin-icon">
+          <i class="fa-solid fa-indian-rupee-sign"></i>
+        </div>
+
+        <div>
+          <p>Total Revenue</p>
+          <h2 id="total-revenue">₹0</h2>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Recent Orders -->
+    <section class="admin-orders">
+
+      <div class="admin-section-header">
+        <h2>Recent Orders</h2>
+        <a href="orders.html">View All Orders</a>
+      </div>
+
+      <div id="admin-orders-container"></div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    <div>
+      <h2>ShopEase</h2>
+      <p>Admin Dashboard</p>
+    </div>
+
+    <p>© 2026 ShopEase. All rights reserved.</p>
+  </footer>
+
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

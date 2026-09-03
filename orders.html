@@ -1,55 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Product Details | ShopEase</title>
+  <title>My Orders | ShopEase</title>
 
   <link rel="stylesheet" href="style.css">
-
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-  <!-- Navbar -->
   <header>
     <nav class="navbar">
+
       <a href="index.html" class="logo">ShopEase</a>
 
-      <div class="nav-links">
-       <a href="index.html">Home</a>
-       <a href="products.html">Shop</a>
-       <a href="orders.html">My Orders</a>
-</div>
+    <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="orders.html">My Orders</a>
+    </div>
+
       <div class="nav-icons">
         <a href="cart.html" class="cart-icon">
           <i class="fa-solid fa-cart-shopping"></i>
           <span id="cart-count">0</span>
         </a>
       </div>
+
     </nav>
   </header>
 
-  <main class="product-details-page">
-    <!-- JavaScript will display selected product here -->
-    <div id="product-details"></div>
+
+  <main class="orders-page">
+
+    <div class="page-title">
+      <p class="subtitle">MY ORDERS</p>
+      <h1>Order History</h1>
+      <p>View your previously placed orders.</p>
+    </div>
+
+    <div id="orders-container">
+      <!-- Orders will be added using JavaScript -->
+    </div>
+
   </main>
+
 
   <footer>
     <div>
       <h2>ShopEase</h2>
       <p>Your simple destination for everyday shopping.</p>
     </div>
+
     <p>© 2026 ShopEase. All rights reserved.</p>
   </footer>
+
+
+  <div id="toast"></div>
 
   <script src="products.js"></script>
   <script src="app.js"></script>
 
-<div id="toast"></div>
-
 </body>
+
 </html>

@@ -19,10 +19,11 @@
     <nav class="navbar">
       <a href="index.html" class="logo">ShopEase</a>
 
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="products.html">Shop</a>
-      </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="orders.html">My Orders</a>
+    </div>
 
       <div class="nav-icons">
         <a href="cart.html" class="cart-icon">
@@ -65,9 +66,13 @@
           <span id="total">₹0</span>
         </div>
 
-        <a href="checkout.html" class="btn checkout-btn">
+        <button class="btn checkout-btn" id="checkout-btn">
           Proceed to Checkout
-        </a>
+        </button>
+
+        <button class="clear-cart-btn" id="clear-cart">
+          Clear Cart
+        </button>
 
         <a href="products.html" class="continue-link">
           ← Continue Shopping
@@ -89,6 +94,6 @@
 
   <script src="products.js"></script>
   <script src="app.js"></script>
-
+<div id="toast"></div>
 </body>
 </html>
